@@ -7,7 +7,7 @@ function Navbar() {
   const mobileMenuStyles = `flex-col absolute top-0 left-0 w-full h-full bg-gray px-10 bg-black py-40 text-5xl font-bold`;
 
   return (
-    <nav className="flex align-center justify-between p-10 text-white md:px-20">
+    <nav className="flex align-center justify-between p-10 text-black md:px-20 bg-white">
       <Link to="/" className="flex z-10 md:py-3 font-bold text-xl lg:text-4xl">
         <svg
           xmlns="http://www.w3.org/2000/svg"

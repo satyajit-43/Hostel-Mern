@@ -14,6 +14,7 @@ import Mess from "./components/Dashboards/StudentDashboard/Mess";
 import Attendance from "./components/Dashboards/StudentDashboard/Attendance";
 import Invoices from "./components/Dashboards/StudentDashboard/Invoices";
 import Suggestions from "./components/Dashboards/StudentDashboard/Suggestions";
+import LeaveForm from "./components/Dashboards/StudentDashboard/LeaveForm";
 import Complaints from "./components/Dashboards/StudentDashboard/Complaints";
 import Settings from "./components/Dashboards/StudentDashboard/Settings";
 import AdminIndex from "./components/Dashboards/AdminDashboard/Index";
@@ -48,6 +49,7 @@ function App() {
           <Route path="attendance" element={<Attendance/>} />
           <Route path="complaints" element={<Complaints/>} />
           <Route path="suggestions" element={<Suggestions/>} />
+          <Route path="leave-form" element={<LeaveForm/>} />
           <Route path="invoices" element={<Invoices/>} />
           <Route path="settings" element={<Settings/>} />
         </Route>

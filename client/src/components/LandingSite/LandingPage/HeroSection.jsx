@@ -6,7 +6,7 @@ import fcrit from '../../../assets/fcrit1.jpg'
 
 function HeroSection() {
   return (
-    <main className="flex flex-col lg:flex-row-reverse justify-center align-center  text-white text-center">
+    <main className="flex flex-col lg:flex-row-reverse justify-center align-center  text-black text-center bg-white">
       {/* <img src={heroImg} alt='nust-hostel-img' className='opacity-[0.05] absolute top-[50vh] left-[50vw] translate-x-[-50%] translate-y-[-50%] select-none' /> */}
       
       <div className="">
