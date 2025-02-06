@@ -62,7 +62,7 @@ function LeaveForm() {
   }
 
   const formTitle = {
-    name: "Reason for Leave",
+    name: "Purpose of Leave",
     placeholder: "Reason",
     req: true,
     type: "text",
@@ -107,19 +107,19 @@ function LeaveForm() {
       >
         <Input field={formTitle} />
         <div>
-        <label
+        {/* <label
             htmlFor="suggestion"
             className="block mb-2 text-sm font-medium text-white"
           >
             Your Leave description
-          </label>
+        </label>
           <textarea
             name="suggestion"
             placeholder="Description..."
             className="border sm:text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500 outline-none"
             onChange={descChange}
             value={desc}
-          ></textarea>
+          ></textarea> */}
 
 
             <label

@@ -24,6 +24,7 @@ import AdminAttendance from "./components/Dashboards/AdminDashboard/Attendance";
 import AdminComplaints from "./components/Dashboards/AdminDashboard/Complaints";
 import AdminInvoices from './components/Dashboards/AdminDashboard/Invoices'
 import AdminSuggestions from './components/Dashboards/AdminDashboard/Suggestions'
+import AdminLeave from './components/Dashboards/AdminDashboard/Leave'
 import AdminSettings from './components/Dashboards/AdminDashboard/Settings'
 import AllStudents from "./components/Dashboards/AdminDashboard/AllStudents";
 import AdminMess from "./components/Dashboards/AdminDashboard/MessOff";
@@ -60,6 +61,7 @@ function App() {
           <Route path="complaints" element={<AdminComplaints />} />
           <Route path="invoices" element={<AdminInvoices/>} />
           <Route path="suggestions" element={<AdminSuggestions/>} />
+          <Route path="leave" element={<AdminLeave/>} />
           <Route path="settings" element={<AdminSettings/>} />
           <Route path="all-students" element={<AllStudents/>}/>
           <Route path="mess" element={<AdminMess />} />
