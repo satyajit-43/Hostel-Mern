@@ -11,11 +11,11 @@ List.propTypes = {
 function List({ list, title, icon, addClasses }) {
   return (
     <div
-      className={`bg-neutral-950 px-7 py-5 rounded-xl shadow-xl w-full md:max-w-[350px] max-h-96 overflow-auto ${addClasses}`}
+      className={`bg-slate-300 dark:bg-neutral-950 px-7 py-5 rounded-xl shadow-xl w-full md:max-w-[350px] max-h-96 overflow-auto ${addClasses}`}
     >
       <div className="flex flex-col justify-between h-full">
-        <span className="text-white font-bold text-xl ml-3">New {title}</span>
-        <ul className="divide-y divide-gray-700 text-white">
+        <span className="text-black dark:text-white font-bold text-xl ml-3">New {title}</span>
+        <ul className="divide-y divide-gray-700 text-black dark:text-white">
           {list.length === 0 ? (
             <li className="mt-2 pl-3 mb-5">No new {title}</li>
           ) : (
@@ -25,12 +25,12 @@ function List({ list, title, icon, addClasses }) {
                 key={item.id}
               >
                 <div className="flex items-center space-x-4">
-                  <div className="flex-shrink-0 text-white">{icon}</div>
+                  <div className="flex-shrink-0 text-black dark:text-white">{icon}</div>
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium truncate text-white">
+                    <p className="text-sm font-medium truncate text-black dark:text-white">
                       {item.title}
                     </p>
-                    <p className="text-sm truncate text-gray-400">
+                    <p className="text-sm truncate text-black dark:text-gray-400">
                       {item.desc}
                     </p>
                   </div>

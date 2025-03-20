@@ -18,7 +18,7 @@ function Modal({ closeModal, suggestion }) {
         <div className="relative rounded-lg shadow bg-gray-700">
           {/* Modal header */}
           <div className="flex items-start justify-between p-4 border-b rounded-t border-gray-600">
-            <h3 className="text-xl font-semibold text-white">
+            <h3 className="text-xl font-semibold text-black">
               {suggestion.title}
             </h3>
             <button
