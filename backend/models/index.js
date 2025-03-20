@@ -8,6 +8,8 @@ const MessOff = require('./MessOff');
 const Suggestion = require('./Suggestion');
 const Invoice = require('./Invoice');
 const Request = require('./Request');
+const Leave = require('./Leave');
+const Notice = require('./Notice');
 
 module.exports = {
     Admin,
@@ -19,5 +21,7 @@ module.exports = {
     MessOff,
     Suggestion,
     Invoice,
-    Request
+    Request,
+    Leave,
+    Notice
 }

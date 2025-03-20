@@ -121,9 +121,9 @@ export default function AdminSignIn() {
   };
 
   return (
-    <div className="w-full rounded-lg md:mt-0 sm:max-w-md xl:p-0 bg-gray-800 border-gray-700">
+    <div className="w-full rounded-lg md:mt-0 sm:max-w-md xl:p-0 bg-white border-black border-[2px]">
       <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
-        <h1 className="text-xl font-bold leading-tight tracking-tight md:text-2xl text-white">
+        <h1 className="text-xl font-bold leading-tight tracking-tight md:text-2xl text-black">
           Sign in to your account - Manager
         </h1>
         <form className="space-y-4 md:space-y-6" onSubmit={login}>
@@ -139,7 +139,7 @@ export default function AdminSignIn() {
                 />
               </div>
               <div className="ml-3 text-sm">
-                <label htmlFor="remember" className="text-gray-300">
+                <label htmlFor="remember" className="text-black">
                   Remember me
                 </label>
               </div>

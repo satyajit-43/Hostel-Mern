@@ -17,6 +17,8 @@ import Suggestions from "./components/Dashboards/StudentDashboard/Suggestions";
 import LeaveForm from "./components/Dashboards/StudentDashboard/LeaveForm";
 import Complaints from "./components/Dashboards/StudentDashboard/Complaints";
 import Settings from "./components/Dashboards/StudentDashboard/Settings";
+import Notices from "./components/Dashboards/StudentDashboard/Notices";
+
 import AdminIndex from "./components/Dashboards/AdminDashboard/Index";
 import AdminHome from "./components/Dashboards/AdminDashboard/Home/Home"
 import RegisterStudent from "./components/Dashboards/AdminDashboard/RegisterStudent";
@@ -28,6 +30,8 @@ import AdminLeave from './components/Dashboards/AdminDashboard/Leave'
 import AdminSettings from './components/Dashboards/AdminDashboard/Settings'
 import AllStudents from "./components/Dashboards/AdminDashboard/AllStudents";
 import AdminMess from "./components/Dashboards/AdminDashboard/MessOff";
+import Facility from "./components/LandingSite/Facility/Facility";
+import AdminNotice from "./components/Dashboards/AdminDashboard/Notice";
 
 function App() {
   return (
@@ -36,6 +40,7 @@ function App() {
         <Route path="/" element={<LandingSite />}>
           <Route index element={<LandingPage />} />
           <Route path="about" element={<About />} />
+          <Route path="facility" element={<Facility />} />
           <Route path="contact" element={<Contact />} />
           <Route path="auth" element={<Auth />}>
             <Route index element={<SignIn />} />
@@ -51,6 +56,7 @@ function App() {
           <Route path="complaints" element={<Complaints/>} />
           <Route path="suggestions" element={<Suggestions/>} />
           <Route path="leave-form" element={<LeaveForm/>} />
+          <Route path="notice-board" element={<Notices/>} />
           <Route path="invoices" element={<Invoices/>} />
           <Route path="settings" element={<Settings/>} />
         </Route>
@@ -62,6 +68,7 @@ function App() {
           <Route path="invoices" element={<AdminInvoices/>} />
           <Route path="suggestions" element={<AdminSuggestions/>} />
           <Route path="leave" element={<AdminLeave/>} />
+          <Route path="notice" element={<AdminNotice/>} />
           <Route path="settings" element={<AdminSettings/>} />
           <Route path="all-students" element={<AllStudents/>}/>
           <Route path="mess" element={<AdminMess />} />
