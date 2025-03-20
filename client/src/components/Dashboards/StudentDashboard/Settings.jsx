@@ -68,10 +68,10 @@ function Settings() {
 
   return (
     <div className="w-full h-screen pt-20 flex flex-col items-center justify-center">
-      <h1 className="text-white font-bold text-5xl mb-10 text-center">Settings</h1>
+      <h1 className="text-black dark:text-white font-bold text-5xl mb-10 text-center">Settings</h1>
       <form method="POST" onSubmit={changePassword} >
-        <div className="w-96 flex flex-col justify-between gap-5 bg-neutral-950 p-5 rounded">
-          <h2 className="text-3xl text-white font-bold mb-5">
+        <div className="w-96 flex flex-col justify-between gap-5 bg-slate-400 dark:bg-neutral-950 p-5 rounded">
+          <h2 className="text-3xl text-black dark:text-white font-bold mb-5">
             Change Password
           </h2>
           <Input field={chngOldPassField} />

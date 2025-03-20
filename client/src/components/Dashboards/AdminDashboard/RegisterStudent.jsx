@@ -109,10 +109,10 @@ function RegisterStudent() {
 
   return (
     <div className="w-full max-h-screen pt-20 flex flex-col items-center justify-center">
-      <h1 className="text-white font-bold text-5xl mt-10 mb-5">
+      <h1 className="text-black dark:text-white font-bold text-5xl mt-10 mb-5">
         Register Student
       </h1>
-      <div className="md:w-[60vw] w-full p-10 bg-neutral-950 rounded-lg shadow-xl mb-10 overflow-auto">
+      <div className="md:w-[60vw] w-full p-10 bg-slate-300 dark:bg-neutral-950 rounded-lg shadow-xl mb-10 overflow-auto">
         <form method="post" onSubmit={registerStudent} className="flex flex-col gap-3">
           <div className="flex gap-5 flex-wrap justify-center md:w-full sw-[100vw]">
             <Input
@@ -191,7 +191,7 @@ function RegisterStudent() {
           <div className="mx-12">
             <label
               htmlFor="address"
-              className="block mb-2 text-sm font-medium text-white"
+              className="block mb-2 text-sm font-medium text-black dark:text-white"
             >
               Address
             </label>
@@ -201,7 +201,7 @@ function RegisterStudent() {
               required
               value={address}
               onChange={(e) => setAddress(e.target.value)}
-              className="border flex-grow sm:text-sm rounded-lg block w-full p-2.5 bg-neutral-700 border-neutral-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500 outline-none"
+              className="border flex-grow sm:text-sm rounded-lg block w-full p-2.5 bg-white text-black dark:bg-neutral-700 border-neutral-600 placeholder-gray-400 dark:text-white focus:ring-blue-500 focus:border-blue-500 outline-none"
             />
           </div>
           <div className="flex flex-wrap gap-5 w-full justify-center">

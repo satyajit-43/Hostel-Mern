@@ -44,8 +44,8 @@ function Attendance() {
   }, [ daysOff.length, thisWeek.length ]);
   return (
     <div className="w-full h-screen flex flex-col gap-5 items-center justify-center max-h-screen overflow-y-auto pt-20 md:pt-0 ">
-      <h1 className="text-white font-bold text-5xl">Attendance</h1>
-      <ul className="flex gap-5 text-white text-xl px-5 sm:p-0 text-center">
+      <h1 className="text-black dark:text-white font-bold text-5xl">Attendance</h1>
+      <ul className="flex gap-5 text-black dark:text-white text-xl px-5 sm:p-0 text-center">
         <li>Total Days: {totalDays}</li>
         <li>Present Days: {totalDays - daysOff}</li>
         <li>Absent days: {daysOff}</li>
@@ -68,8 +68,8 @@ function Attendance() {
             ],
           }}
         />
-        <div className="flow-root bg-neutral-950 rounded-lg shadow-xl w-full mx-5 sm:m-0 sm:w-80 p-5">
-          <p className="text-white text-xl font-bold ">This Week</p>
+        <div className="flow-root bg-slate-300 dark:bg-neutral-950 rounded-lg shadow-xl w-full mx-5 sm:m-0 sm:w-80 p-5">
+          <p className="dark:text-white text-xl font-bold ">This Week</p>
           <ul role="list" className="divide-y divide-gray-700">
             {thisWeek.map((day) => (
               <li className="py-3 sm:py-4" key={day.weekdate}>

@@ -58,24 +58,24 @@ function Suggestions() {
 
   return (
     <div className="w-full h-screen flex flex-col gap-10 items-center justify-center max-h-screen overflow-y-auto">
-      <h1 className="text-white font-bold text-5xl mt-5">Suggestions</h1>
+      <h1 className="text-black dark:text-white font-bold text-5xl mt-5">Suggestions</h1>
       <form
         method="POST"
         onSubmit={registerSuggestions}
-        className="md:w-[30vw] w-full py-5 pb-7 px-10 bg-neutral-950 rounded-lg shadow-xl flex flex-col gap-5"
+        className="md:w-[30vw] w-full py-5 pb-7 px-10 bg-slate-300 dark:bg-neutral-950 rounded-lg shadow-xl flex flex-col gap-5"
       >
         <Input field={suggestionTitle} />
         <div>
           <label
             htmlFor="suggestion"
-            className="block mb-2 text-sm font-medium text-white"
+            className="block mb-2 text-sm font-medium text-black dark:text-white"
           >
             Your suggestion description
           </label>
           <textarea
             name="suggestion"
             placeholder="Suggestions..."
-            className="border sm:text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500 outline-none"
+            className="border sm:text-sm rounded-lg block w-full p-2.5 bg-white text-black dark:bg-gray-700 border-gray-600 placeholder-gray-400 dark:text-white focus:ring-blue-500 focus:border-blue-500 outline-none"
             onChange={descChange}
             value={desc}
           ></textarea>

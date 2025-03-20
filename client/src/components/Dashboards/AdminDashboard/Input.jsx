@@ -20,8 +20,8 @@ function Input({ field }) {
     const value = field.value;
     return (
         <div>
-            <label htmlFor={name} className="block mb-2 text-sm font-medium text-white">{name.toLowerCase()==='cms' ? 'CMS':name}</label>
-            <input type={type} name={name} id={name} className=" border sm:text-sm rounded-lg block w-full p-2.5 bg-neutral-700 border-neutral-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500 outline-none" placeholder={placeholder} required={required} value={value} onChange={field.onChange} />
+            <label htmlFor={name} className="block mb-2 text-sm font-medium text-black dark:text-white">{name.toLowerCase()==='cms' ? 'CMS':name}</label>
+            <input type={type} name={name} id={name} className=" border sm:text-sm rounded-lg block w-full p-2.5 bg-white text-black dark:bg-neutral-700 border-neutral-600 placeholder-gray-400 dark:text-white focus:ring-blue-500 focus:border-blue-500 outline-none" placeholder={placeholder} required={required} value={value} onChange={field.onChange} />
         </div>
     );
 }

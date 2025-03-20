@@ -62,19 +62,19 @@ function Notice() {
   return (
     <div className="w-full min-h-screen flex flex-col items-center py-10 gap-5">
       <LoadingBar color='#00bfff' progress={Progress} onLoaderFinished={() => setProgress(0)} />
-      <h1 className="text-white text-4xl font-bold mt-12">Notice Board</h1>
+      <h1 className="text-black dark:text-white text-4xl font-bold mt-12">Notice Board</h1>
     <div className="w-[1100px] flex flex-row items-center gap-[40px] mt-[30px]">
-      <div className="w-full sm:w-1/2 bg-neutral-900 p-6 rounded-xl shadow-xl">
-        <h2 className="text-white text-xl mb-4 font-semibold">Create New Notice</h2>
+      <div className="w-full sm:w-1/2 bg-slate-300 dark:bg-neutral-900 p-6 rounded-xl shadow-xl">
+        <h2 className="text-black dark:text-white text-xl mb-4 font-semibold">Create New Notice</h2>
         <input
           type="text"
-          className="w-full p-2 mb-3 rounded bg-neutral-800 text-white"
+          className="w-full p-2 mb-3 rounded dark:bg-neutral-800 dark:text-white"
           placeholder="Notice Title"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
         />
         <textarea
-          className="w-full p-2 mb-3 rounded bg-neutral-800 text-white"
+          className="w-full p-2 mb-3 rounded dark:bg-neutral-800 text-black dark:text-white"
           placeholder="Notice Description"
           rows={4}
           value={description}
@@ -88,7 +88,7 @@ function Notice() {
         </button>
       </div>
 
-      <div className="w-full sm:w-1/2 bg-neutral-950 px-8 py-5 mt-1 rounded-xl shadow-lg text-white max-h-[600px] overflow-y-auto">
+      <div className="w-full sm:w-1/2 bg-slate-300 dark:bg-neutral-950 px-8 py-5 mt-1 rounded-xl shadow-lg text-black dark:text-white max-h-[600px] overflow-y-auto">
         <h2 className="text-xl font-semibold mb-3">All Notices</h2>
         <ul className="divide-y divide-gray-700">
           {notices.length === 0
@@ -96,8 +96,8 @@ function Notice() {
             : notices.map((notice) => (
                 <li key={notice._id} className="py-3">
                   <h3 className="font-bold text-lg">{notice.title}</h3>
-                  <p className="text-gray-300">{notice.description}</p>
-                  <p className="text-gray-500 text-sm">
+                  <p className="text-black dark:text-gray-300">{notice.description}</p>
+                  <p className="text-black dark:text-gray-500 text-sm">
                     {new Date(notice.date).toLocaleString()}
                   </p>
                 </li>

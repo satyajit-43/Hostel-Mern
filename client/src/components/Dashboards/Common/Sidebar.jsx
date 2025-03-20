@@ -70,7 +70,7 @@ function Sidebar({ links }) {
         </svg>
       </button>
       <div
-        className={`flex flex-col justify-between h-screen w-screen absolute md:static sm:w-64 bg-black text-white transition-transform duration-300 ease-in-out z-40 transform ${
+        className={`border-r-black border-r-[2px] flex flex-col justify-between h-screen w-screen absolute md:static sm:w-64 bg-white text-black dark:bg-black dark:text-white transition-transform duration-300 ease-in-out z-40 transform ${
           isOpen ? "translate-x-0" : "absolute -translate-x-full"
         }`}
       >
@@ -94,7 +94,7 @@ function Sidebar({ links }) {
           </svg>{" "}
           <span className="md:hidden lg:inline">Dashboard</span>
         </Link>
-        <div className="flex flex-col space-y-1 text-2xl text-white">
+        <div className="flex flex-col space-y-1 text-2xl bg-white dark:bg-black text-black dark:text-white">
           {/*eslint-disable-next-line react/prop-types*/}
           {links.map((link) => (
             <Link

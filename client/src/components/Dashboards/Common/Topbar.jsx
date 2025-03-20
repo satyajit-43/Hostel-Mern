@@ -8,6 +8,40 @@ Topbar.propTypes = {
 };
 
 function Topbar({ name, notifications }) {
+  //Light Mode
+  const [theme, setTheme] = useState('dark');
+
+  useEffect(() => {
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    setTheme(savedTheme);
+    updateTheme(savedTheme);
+  }, []);
+  
+  useEffect(() => {
+    updateTheme(theme);
+    localStorage.setItem('theme', theme);
+  }, [theme]);
+  
+  const updateTheme = (theme) => {
+    const root = document.documentElement;
+    if (theme === 'dark') {
+      root.classList.add('dark');
+      root.style.setProperty('--clr-primary', '#1C1917');
+      root.style.setProperty('--primary', '#0A0A0A');
+      root.style.setProperty('--secondary', '#27272a');
+    } else {
+      root.classList.remove('dark');
+      root.style.setProperty('--clr-primary', '#ffffff');
+      root.style.setProperty('--primary', '#1C1917');
+      root.style.setProperty('--secondary', '#0A0A0A');
+    }
+  };
+  
+  const toggleTheme = () => {
+    setTheme(theme === 'dark' ? 'light' : 'dark');
+  };
+
+
   const navigate = useNavigate();
   let logout = () => {
     localStorage.removeItem("admin");
@@ -30,12 +64,38 @@ function Topbar({ name, notifications }) {
   }, []);
 
   return (
-    <div className="py-5 px-5 flex items-center justify-between text-white w-full bg-stone-950 shadow-lg absolute top-0 md:w-[calc(100%-256px)] md:ml-[256px]">
+    <div className="py-5 px-5 flex items-center justify-between dark:text-white w-full bg-white dark:bg-stone-950 shadow-lg absolute top-0 md:w-[calc(100%-256px)] md:ml-[256px]">
       <span className="hidden md:block">
         {date.toLocaleTimeString()}
       </span>    
       <span>{name}</span>
       <div className="flex gap-3">
+
+      <button
+        onClick={toggleTheme}
+        className="w-6 h-6 hover:text-blue-500"
+        title="Toggle Theme"
+      >
+          {theme === 'dark' ? (
+            // Sun icon for light mode
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+              strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+              <path strokeLinecap="round" strokeLinejoin="round"
+                d="M12 3v1.5M12 19.5V21M4.22 4.22l1.06 1.06M18.72 18.72l1.06 1.06M3 12h1.5M19.5 12H21M4.22 19.78l1.06-1.06M18.72 5.28l1.06-1.06M12 8.25a3.75 3.75 0 100 7.5 3.75 3.75 0 000-7.5z"
+              />
+            </svg>
+          ) : (
+
+            // Moon icon for dark mode
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+              strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+              <path strokeLinecap="round" strokeLinejoin="round"
+                d="M21.75 15.002A9.718 9.718 0 0112.002 3a9.713 9.713 0 00-8.62 5.605A9.715 9.715 0 0012 21c4.563 0 8.393-3.061 9.75-7.373z"
+              />
+            </svg>
+          )}
+      </button>
+
         <Link to="settings">
           <svg
             xmlns="http://www.w3.org/2000/svg"

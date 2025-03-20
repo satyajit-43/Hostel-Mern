@@ -129,22 +129,22 @@ function Complaints() {
 
   return (
     <div className="w-full h-screen flex flex-col gap-10 items-center justify-center md:p-0 px-10 max-h-screen overflow-y-auto pt-80 md:pt-80 lg:p-0">
-      <h1 className="text-white font-bold text-5xl mt-10">Complaints</h1>
+      <h1 className="text-black dark:text-white font-bold text-5xl mt-10">Complaints</h1>
       <div className="flex gap-5 flex-wrap items-center justify-center">
         <form
           method="POST"
           onSubmit={registerComplaint}
-          className="md:w-96 w-full py-5 pb-7 px-10 bg-neutral-950 rounded-lg shadow-xl flex flex-col gap-5"
+          className="md:w-96 w-full py-5 pb-7 px-10 bg-slate-300 dark:bg-neutral-950 rounded-lg shadow-xl flex flex-col gap-5"
         >
           <div>
             <label
               htmlFor="description"
-              className="block mb-2 text-sm font-medium text-white"
+              className="block mb-2 text-sm font-medium text-black dark:text-white"
             >
               Your complaint type
             </label>
             <select
-              className="border sm:text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500 outline-none"
+              className="border sm:text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 border-gray-600 placeholder-gray-400 dark:text-white focus:ring-blue-500 focus:border-blue-500 outline-none"
               onChange={chngType}
             >
               {types.map((type) => (
@@ -165,14 +165,14 @@ function Complaints() {
           <div>
             <label
               htmlFor="description"
-              className="block mb-2 text-sm font-medium text-white"
+              className="block mb-2 text-sm font-medium text-black dark:text-white"
             >
               Your complaint description
             </label>
             <textarea
               name="description"
               placeholder="Details of complaint"
-              className="border sm:text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500 outline-none"
+              className="border sm:text-sm rounded-lg block w-full p-2.5 bg-white text-black dark:bg-gray-700 border-gray-600 placeholder-gray-400 dark:text-white focus:ring-blue-500 focus:border-blue-500 outline-none"
               onChange={descChange}
               value={desc}
             ></textarea>
@@ -197,9 +197,9 @@ function Complaints() {
             />
           </div>
         </form>
-        <div className="w-full md:w-80 max-w-md max-h-96 p-4 border rounded-lg shadow sm:p-8 bg-neutral-950 border-neutral-900 drop-shadow-xl overflow-y-auto">
+        <div className="w-full md:w-80 max-w-md max-h-96 p-4 border rounded-lg shadow sm:p-8 bg-slate-300 dark:bg-neutral-950 dark:border-neutral-900 drop-shadow-xl overflow-y-auto">
           <div className="flex items-center justify-between mb-4">
-            <h5 className="text-xl font-bold leading-none text-white">
+            <h5 className="text-xl font-bold leading-none text-black dark:text-white">
               Registered Complaints
             </h5>
           </div>
@@ -210,7 +210,7 @@ function Complaints() {
                 : regComplaints.map((complain) => (
                     <li className="py-3 sm:py-4" key={complain.title}>
                       <div className="flex items-center space-x-4">
-                        <div className="flex-shrink-0 text-white">
+                        <div className="flex-shrink-0 text-black dark:text-white">
                           {complain.status.toLowerCase() === "pending" ? (
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
@@ -244,14 +244,14 @@ function Complaints() {
                           )}
                         </div>
                         <div className="flex-1 min-w-0">
-                          <p className="text-sm font-medium truncate text-white">
+                          <p className="text-sm font-medium truncate text-black dark:text-white">
                             {complain.title}
                           </p>
-                          <p className="text-sm truncate text-gray-400">
+                          <p className="text-sm truncate text-black dark:text-gray-400">
                             {complain.date}
                           </p>
                         </div>
-                        <div className="flex flex-col items-center text-base font-semibold text-white">
+                        <div className="flex flex-col items-center text-base font-semibold text-black dark:text-white">
                           {complain.type}
                         </div>
                       </div>

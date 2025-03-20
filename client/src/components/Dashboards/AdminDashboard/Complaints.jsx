@@ -199,12 +199,12 @@ function Complaints() {
 
   return (
     <div className="w-full h-screen flex flex-col gap-10 md:gap-7 pt-32 items-center justify-center overflow-auto">
-      <h1 className="text-white font-bold text-5xl">Complaints</h1>
+      <h1 className="text-black dark:text-white font-bold text-5xl">Complaints</h1>
       <div className="flex md:gap-7 flex-wrap justify-center items-center gap-7">
         {graph}
-        <div className="bg-neutral-950 px-10 py-5 rounded-xl shadow-xl w-96 max-h-64 overflow-auto">
-          <span className="text-white font-bold text-xl">New Complaints</span>
-          <ul role="list" className="divide-y divide-gray-700 text-white">
+        <div className="bg-white dark:bg-neutral-950 px-10 py-5 rounded-xl shadow-xl w-96 max-h-64 overflow-auto">
+          <span className="text-black dark:text-white font-bold text-xl">New Complaints</span>
+          <ul role="list" className="divide-y divide-gray-700 text-black dark:text-white">
             {unsolvedComplaints.length === 0
               ? "No new complaints!"
               : unsolvedComplaints.map((complaint) => (
@@ -213,7 +213,7 @@ function Complaints() {
                   key={complaint.student}
                 >
                   <div className="flex items-center space-x-4">
-                    <div className="flex-shrink-0 text-white">
+                    <div className="flex-shrink-0 text-black dark:text-white">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
@@ -230,10 +230,10 @@ function Complaints() {
                       </svg>
                     </div>
                     <div className="flex-1 min-w-0">
-                      <p className="text-sm font-medium truncate text-white">
+                      <p className="text-sm font-medium truncate text-black dark:text-white">
                         {complaint.title}
                       </p>
-                      <p className="text-sm truncate text-gray-400">
+                      <p className="text-sm truncate text-black dark:text-gray-400">
                         {complaint.desc}
                       </p>
                     </div>

@@ -134,7 +134,7 @@ function Attendance() {
           },
         }}
       />
-      <ul className="text-white">
+      <ul className="text-black dark:text-white">
         <li className="flex gap-2">
           {" "}
           <span className="w-10 h-5 bg-orange-500 block"></span> Absent
@@ -151,19 +151,19 @@ function Attendance() {
   return (
     <div className="w-full h-screen flex flex-col gap-3 items-center xl:pt-0 md:pt-40 pt-64 justify-center overflow-auto max-h-screen">
       <LoadingBar color="#0000FF" progress={progress} onLoaderFinished={() => setProgress(0)} />
-      <h1 className="text-white font-bold text-5xl">Attendance</h1>
-      <p className="text-white text-xl mb-10">Date: {date}</p>
+      <h1 className="text-black dark:text-white font-bold text-5xl">Attendance</h1>
+      <p className="text-black dark:text-white text-xl mb-10">Date: {date}</p>
       <div className="flex gap-5 flex-wrap items-center justify-center">
         <>{graph}</>
-        <div className="flow-root md:w-[400px] w-full bg-neutral-950 px-7 py-5 rounded-lg shadow-xl max-h-[250px] overflow-auto">
+        <div className="flow-root md:w-[400px] w-full bg-white dark:bg-neutral-950 px-7 py-5 rounded-lg shadow-xl max-h-[250px] overflow-auto">
           <span
-            className={`font-bold text-xl text-white ${
+            className={`font-bold text-xl text-black dark:text-white ${
               unmarkedStudents.length ? "block" : "hidden"
             }`}
           >
             Unmarked Students
           </span>
-          <ul role="list" className="divide-y divide-gray-700 text-white">
+          <ul role="list" className="divide-y divide-gray-700 text-black dark:text-white">
             {unmarkedStudents.length === 0
               ? "All students are marked!"
               : unmarkedStudents.map((student) =>
@@ -173,7 +173,7 @@ function Attendance() {
                       key={student.id}
                     >
                       <div className="flex items-center space-x-4">
-                        <div className="flex-shrink-0 text-white">
+                        <div className="flex-shrink-0 text-black dark:text-white">
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             fill="none"
@@ -190,10 +190,10 @@ function Attendance() {
                           </svg>
                         </div>
                         <div className="flex-1 min-w-0">
-                          <p className="text-sm font-medium truncate text-white">
+                          <p className="text-sm font-medium truncate text-black dark:text-white">
                             {student.name}
                           </p>
-                          <p className="text-sm truncate text-gray-400">
+                          <p className="text-sm truncate text-black dark:text-gray-400">
                             {student.cms} | Room: {student.room}
                           </p>
                         </div>

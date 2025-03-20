@@ -52,9 +52,9 @@ const List = () => {
   }, [invoiceList.length]);
 
   return (
-    <div className="w-full max-w-md p-4 rounded-lg shadow sm:p-8 bg-neutral-950 drop-shadow-xl overflow-y-auto max-h-70">
+    <div className="w-full max-w-md p-4 rounded-lg shadow sm:p-8 bg-slate-300 dark:bg-neutral-950 drop-shadow-xl overflow-y-auto max-h-70">
       <div className="flex items-center justify-between mb-4">
-        <h5 className="text-xl font-bold leading-none text-white">
+        <h5 className="text-xl font-bold leading-none dark:text-white">
           Unpaid Invoices
         </h5>
       </div>
@@ -63,7 +63,7 @@ const List = () => {
           {invoiceList.map((invoice) => (
             <li className="py-3 sm:py-4" key="1">
               <div className="flex items-center space-x-4">
-                <div className="flex-shrink-0 text-white">
+                <div className="flex-shrink-0 dark:text-white">
                   {invoice.status.toLowerCase() === "pending" ? (
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -97,14 +97,14 @@ const List = () => {
                   )}
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm font-medium truncate text-white">
+                  <p className="text-sm font-medium truncate dark:text-white">
                     {invoice.title}
                   </p>
-                  <p className="text-sm truncate text-gray-400">
+                  <p className="text-sm truncate dark:text-gray-400">
                     {invoice.date}
                   </p>
                 </div>
-                <div className="flex flex-col items-center text-base font-semibold text-white">
+                <div className="flex flex-col items-center text-base font-semibold dark:text-white">
                   {invoice.amount}
                 </div>
               </div>
@@ -153,7 +153,7 @@ function Home() {
 
   return (
     <div className="w-full h-screen flex items-center justify-center flex-col gap-5 max-h-screen overflow-y-auto pt-64 lg:pt-0 md:pt-64 sm:pt-96">
-      <h1 className="text-white font-bold text-5xl text-center">
+      <h1 className="text-black dark:text-white font-bold text-5xl text-center">
         Welcome <span className="text-blue-500">{student.name}!</span>
       </h1>
       <div className="flex gap-5 w-full justify-center flex-wrap">

@@ -138,9 +138,9 @@ function Mess() {
 
   return (
     
-    <div className="w-full h-screen gap-10 flex flex-col items-center justify-center max-h-screen overflow-y-auto pt-[500px] sm:pt-96 md:pt-96 lg:pt-40">
-      <h1 className="text-white font-bold text-5xl">Mess Off</h1>
-      <ul className="flex gap-5 text-white text-xl px-5 sm:p-0 text-center">
+    <div className="w-full h-screen gap-10 flex flex-col items-center justify-center max-h-screen overflow-y-auto pt-[500px] sm:pt-96 md:pt-96 lg:pt-20">
+      <h1 className="text-black dark:text-white font-bold text-5xl">Mess Off</h1>
+      <ul className="flex gap-5 text-black dark:text-white text-xl px-5 sm:p-0 text-center">
         <li>Total Mess: {daysofmonthtilltoday - Messoff} </li>
         <li>Mess Off: {loading ? loader : Messoff}</li>
         <li>Requests Sent: {loading ? loader : requests}</li>
@@ -172,7 +172,7 @@ function Mess() {
               },
             }}
           />
-          <ul className="text-white">
+          <ul className="text-black dark:text-white">
             <li className="flex gap-2">
               {" "}
               <span className="w-10 h-5 bg-orange-500 block"></span> Mess Off
@@ -189,28 +189,28 @@ function Mess() {
             </li>
           </ul>
         </div>
-        <div className="w-full sm:w-80 max-w-md max-h-60 p-4 border rounded-lg shadow sm:p-8 bg-neutral-950 border-neutral-900 drop-shadow-xl overflow-y-auto">
+        <div className="w-full sm:w-80 max-w-md max-h-60 p-4 border rounded-lg shadow sm:p-8 bg-slate-300 dark:bg-neutral-950 dark:border-neutral-900 drop-shadow-xl overflow-y-auto">
           <div className="flex items-center justify-between mb-4">
-            <h5 className="text-xl font-bold leading-none text-white">
+            <h5 className="text-xl font-bold leading-none text-black dark:text-white">
               All Requests
             </h5>
           </div>
           <div className="flow-root">
-            <ul role="list" className="divide-y divide-gray-700 text-white ">
+            <ul role="list" className="divide-y divide-gray-700 text-black dark:text-white ">
               {requestsList.length === 0
                 ? "No requests Sent"
                 : requestsList.map((req) => (
                     <li className="py-3 sm:py-4" key={req._id}>
                       <div className="flex items-center space-x-4">
                         <div className="flex-1 min-w-0">
-                          <p className="text-sm font-medium truncate text-white">
+                          <p className="text-sm font-medium truncate text-black dark:text-white">
                             {req.status.toUpperCase()}
                           </p>
-                          <p className="text-sm truncate text-gray-400">
+                          <p className="text-sm truncate text-black dark:text-gray-400">
                           {new Date(req.leaving_date).toDateString().slice(4, 10)} to {new Date(req.return_date).toDateString().slice(4, 10)}
                           </p>
                         </div>
-                        <div className="flex flex-col items-center text-base font-semibold text-white">
+                        <div className="flex flex-col items-center text-base font-semibold text-black dark:text-white">
                         {new Date(req.request_date).toDateString().slice(4,10)}
                         </div>
                       </div>
@@ -223,7 +223,7 @@ function Mess() {
       <form
         method="POST"
         onSubmit={requestMessOff}
-        className="bg-neutral-950 py-5 px-10 rounded-lg shadow-xl w-full sm:w-auto"
+        className="bg-slate-300 dark:bg-neutral-950 py-5 px-10 rounded-lg shadow-xl w-full sm:w-auto mb-5"
       >
         <div className="flex gap-5">
           <Input field={leavingDate} />

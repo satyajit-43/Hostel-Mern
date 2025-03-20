@@ -119,11 +119,11 @@ const reject = (id) => {
   return (
     <div className="w-full h-screen flex flex-col gap-3 items-center justify-center">
       <LoadingBar color="#0000FF" progress={progress} onLoaderFinished={() => setProgress(0)} />
-      <h1 className="text-white font-bold text-5xl">Manage Mess</h1>
+      <h1 className="text-black dark:text-white font-bold text-5xl">Manage Mess</h1>
       <div className="w-96 h-52">{graph}</div>
-      <div className="bg-neutral-950 px-10 py-5 rounded-xl shadow-xl sm:w-[50%] sm:min-w-[450px] w-full mt-5 max-h-96 overflow-auto">
-        <span className="text-white font-bold text-xl">All Requests</span>
-        <ul role="list" className="divide-y divide-gray-700 text-white">
+      <div className="bg-slate-300 dark:bg-neutral-950 px-10 py-5 rounded-xl shadow-xl sm:w-[50%] sm:min-w-[450px] w-full mt-5 max-h-[250px] overflow-auto ">
+        <span className="text-black dark:text-white font-bold text-xl">All Requests</span>
+        <ul role="list" className="divide-y divide-gray-700 text-black dark:text-white">
           {newReqs.length === 0 ? (
             <li className="mt-2">No new requests</li>
           ) : (
@@ -133,7 +133,7 @@ const reject = (id) => {
                 key={req.id}
               >
                 <div className="flex items-center space-x-4">
-                  <div className="flex-shrink-0 text-white">
+                  <div className="flex-shrink-0 text-black dark:text-white">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none"
@@ -150,10 +150,10 @@ const reject = (id) => {
                     </svg>
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium truncate text-white">
+                    <p className="text-sm font-medium truncate text-black dark:text-white">
                       {req.student.name} [Room: {req.student.room_no}]
                     </p>
-                    <p className="text-sm truncate text-gray-400">
+                    <p className="text-sm truncate text-black dark:text-gray-400">
                       from: {req.from} to: {req.to}
                     </p>
                   </div>

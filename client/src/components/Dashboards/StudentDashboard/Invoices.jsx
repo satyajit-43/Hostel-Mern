@@ -50,32 +50,32 @@ function Invoices() {
 
   return (
     <div className="w-full h-screen flex flex-col gap-5 items-center justify-center max-h-screen overflow-y-auto">
-      <h1 className="text-white font-bold text-5xl">Invoices</h1>
-      <p className="text-white text-xl text-center px-5 sm:p-0">
+      <h1 className="text-black dark:text-white font-bold text-5xl">Invoices</h1>
+      <p className="text-black dark:text-white text-xl text-center px-5 sm:p-0">
         All the invoices like Mess bills, Hostel fee will be shown here
       </p>
       <div className="flex gap-10 items-center my-5">
         <div className="flex flex-col items-center justify-center">
           <dt className="mb-2 ml-2 text-5xl font-extrabold text-blue-700">{totalInvoices}</dt>
-          <dd className="text-gray-400 text-center">Total Invoices</dd>
+          <dd className="text-black dark:text-gray-400 text-center">Total Invoices</dd>
         </div>
         <div className="flex flex-col items-center justify-center">
           <dt className="mb-2 text-5xl font-extrabold text-blue-700">{paidInvoices}</dt>
-          <dd className="text-gray-400 ">
+          <dd className="text-black dark:text-gray-400 ">
             Paid Invoices
           </dd>
         </div>
         <div className="flex flex-col items-center justify-center">
           <dt className="mb-2 text-5xl font-extrabold text-blue-700">{pendingInvoices}</dt>
-          <dd className="text-gray-400">
+          <dd className="text-black dark:text-gray-400">
             Pending Invoices
           </dd>
         </div>
       </div>
 
-      <div className="w-full max-w-md p-4 border rounded-lg shadow sm:p-8 bg-neutral-950 border-neutral-900 drop-shadow-xl overflow-y-auto max-h-70">
+      <div className="w-full max-w-md p-4 border rounded-lg shadow sm:p-8 bg-slate-300 dark:bg-neutral-950 dark:border-neutral-900 drop-shadow-xl overflow-y-auto max-h-[300px]">
         <div className="flex items-center justify-between mb-4">
-          <h5 className="text-xl font-bold leading-none text-white">
+          <h5 className="text-xl font-bold leading-none text-black dark:text-white">
             Latest Invoices
           </h5>
         </div>
@@ -84,7 +84,7 @@ function Invoices() {
             {invoiceList.map((invoice) => (
               <li className="py-3 sm:py-4" key="1">
                 <div className="flex items-center space-x-4">
-                  <div className="flex-shrink-0 text-white">
+                  <div className="flex-shrink-0 text-black dark:text-white">
                     {invoice.status.toLowerCase() === "pending" ? (
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -118,14 +118,14 @@ function Invoices() {
                     )}
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium truncate text-white">
+                    <p className="text-sm font-medium truncate text-black dark:text-white">
                       {invoice.title}
                     </p>
-                    <p className="text-sm truncate text-gray-400">
+                    <p className="text-sm truncate text-black dark:text-gray-400">
                       {invoice.date}
                     </p>
                   </div>
-                  <div className="flex flex-col items-center text-base font-semibold text-white">
+                  <div className="flex flex-col items-center text-base font-semibold text-black dark:text-white">
                     {invoice.amount}
                   </div>
                 </div>
