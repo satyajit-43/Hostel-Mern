@@ -18,6 +18,7 @@ import LeaveForm from "./components/Dashboards/StudentDashboard/LeaveForm";
 import Complaints from "./components/Dashboards/StudentDashboard/Complaints";
 import Settings from "./components/Dashboards/StudentDashboard/Settings";
 import Notices from "./components/Dashboards/StudentDashboard/Notices";
+import RoomAllocation from "./components/Dashboards/StudentDashboard/RoomAllocation";
 
 import AdminIndex from "./components/Dashboards/AdminDashboard/Index";
 import AdminHome from "./components/Dashboards/AdminDashboard/Home/Home"
@@ -32,6 +33,7 @@ import AllStudents from "./components/Dashboards/AdminDashboard/AllStudents";
 import AdminMess from "./components/Dashboards/AdminDashboard/MessOff";
 import Facility from "./components/LandingSite/Facility/Facility";
 import AdminNotice from "./components/Dashboards/AdminDashboard/Notice";
+import RoomRequests from "./components/Dashboards/AdminDashboard/RoomRequests";
 
 function App() {
   return (
@@ -57,6 +59,7 @@ function App() {
           <Route path="suggestions" element={<Suggestions/>} />
           <Route path="leave-form" element={<LeaveForm/>} />
           <Route path="notice-board" element={<Notices/>} />
+          <Route path="room-allocation" element={<RoomAllocation/>} />
           <Route path="invoices" element={<Invoices/>} />
           <Route path="settings" element={<Settings/>} />
         </Route>
@@ -69,6 +72,7 @@ function App() {
           <Route path="suggestions" element={<AdminSuggestions/>} />
           <Route path="leave" element={<AdminLeave/>} />
           <Route path="notice" element={<AdminNotice/>} />
+          <Route path="room" element={<RoomRequests/>} />
           <Route path="settings" element={<AdminSettings/>} />
           <Route path="all-students" element={<AllStudents/>}/>
           <Route path="mess" element={<AdminMess />} />

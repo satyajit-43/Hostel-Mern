@@ -17,6 +17,8 @@ app.use('/api/admin', require('./routes/adminRoutes'));
 app.use('/api/complaint', require('./routes/complaintRoutes'));
 app.use('/api/invoice', require('./routes/invoiceRoutes'));
 app.use('/api/notice', require('./routes/noticeRoutes'));
+app.use('/api/room', require('./routes/roomRoutes'));
+app.use('/api/leave', require('./routes/leaveRoutes'));
 app.use('/api/messoff', require('./routes/messoffRoutes'));
 app.use('/api/request', require('./routes/requestRoutes'));
 app.use('/api/attendance', require('./routes/attendanceRoutes'));

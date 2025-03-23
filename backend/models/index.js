@@ -10,6 +10,8 @@ const Invoice = require('./Invoice');
 const Request = require('./Request');
 const Leave = require('./Leave');
 const Notice = require('./Notice');
+const Room = require('./Room');
+const RoomAllocation = require('./RoomAllocation');
 
 module.exports = {
     Admin,
@@ -23,5 +25,7 @@ module.exports = {
     Invoice,
     Request,
     Leave,
-    Notice
+    Notice,
+    Room,
+    RoomAllocation
 }
