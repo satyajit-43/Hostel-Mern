@@ -1,21 +1,31 @@
+// models/Room.js
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const RoomSchema = new Schema({
-    number: {
-      type: String,
-      required: true,
-      unique: true
+    room_no: {
+        type: Number,
+        required: true,
+        unique: true
+    },
+    hostel: {
+        type: Schema.Types.ObjectId,
+        ref: 'hostel',
+        required: true
+    },
+    type: {
+        type: String,
+        enum: ['Single', 'Double', 'Triple'],
+        required: true
     },
     capacity: {
-      type: Number,
-      required: true
+        type: Number,
+        required: true
     },
     occupants: [{
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Student'
+        type: Schema.Types.ObjectId,
+        ref: 'student'
     }]
-  });
-  
-  module.exports = Room =  mongoose.model('room', RoomSchema);
-  
+}, { timestamps: true });
+
+module.exports = Room = mongoose.model('room', RoomSchema);

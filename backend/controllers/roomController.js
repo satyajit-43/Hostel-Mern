@@ -1,127 +1,151 @@
-const { validationResult } = require("express-validator");
-const { RoomAllocation } = require("../models");
-const { Room } = require("../models");
-const { Student } = require("../models");
+const { validationResult } = require('express-validator');
+const { Room } = require('../models');
+const { Student } = require('../models');
 
-// @route   POST /api/roomallocation
-// @desc    Student applies for a room
+// @route   POST api/room/allocate
+// @desc    Allocate room to student
+// @access  Admin/Student
+exports.allocateRoom = async (req, res) => {
+    let success = false;
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array(), success });
+    }
+
+    const { cms_id, room_no } = req.body;
+
+    try {
+        const student = await Student.findOne({ cms_id });
+        if (!student) {
+            return res.status(404).json({ success, msg: 'Student not found' });
+        }
+
+        const room = await Room.findOne({ room_no });
+        if (!room) {
+            return res.status(404).json({ success, msg: 'Room not found' });
+        }
+
+        // Already in same room
+        if (student.room_no === room_no) {
+            return res.status(400).json({ success, msg: 'Student is already in this room' });
+        }
+
+        // Prevent overbooking
+        if (room.occupants.length >= room.capacity) {
+            return res.status(400).json({ success, msg: 'Room is already full' });
+        }
+
+        // Remove from old room if any
+        if (student.room_no) {
+            const oldRoom = await Room.findOne({ room_no: student.room_no });
+            if (oldRoom) {
+                oldRoom.occupants = oldRoom.occupants.filter(id => id.toString() !== student._id.toString());
+                await oldRoom.save();
+            }
+        }
+
+        // Assign new room
+        student.room_no = room_no;
+        await student.save();
+
+        // Add to occupants list
+        if (!room.occupants.includes(student._id)) {
+            room.occupants.push(student._id);
+            await room.save();
+        }
+
+        success = true;
+        res.json({ success, msg: 'Room allocated successfully' });
+
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server error');
+    }
+};
+
+// @route   POST api/room/deallocate
+// @desc    Deallocate student from room
+// @access  Admin/Student
+exports.deallocateRoom = async (req, res) => {
+    let success = false;
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array(), success });
+    }
+
+    const { cms_id } = req.body;
+
+    try {
+        const student = await Student.findOne({ cms_id });
+        if (!student || !student.room_no) {
+            return res.status(400).json({ success, msg: 'Student is not assigned to any room' });
+        }
+
+        const room = await Room.findOne({ room_no: student.room_no });
+        if (room) {
+            room.occupants = room.occupants.filter(id => id.toString() !== student._id.toString());
+            await room.save();
+        }
+
+        student.room_no = null;
+        await student.save();
+
+        success = true;
+        res.json({ success, msg: 'Room deallocated successfully' });
+
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server error');
+    }
+};
+
+// @route   POST api/room/byhostel
+// @desc    Get all rooms in a hostel
 // @access  Public
-exports.applyRoom = async (req, res) => {
-  let success = false;
-  const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    return res.status(400).json({ errors: errors.array(), success });
-  }
-
-  const { student, room } = req.body;
-
-  try {
-    const existing = await RoomAllocation.findOne({ student });
-    if (existing && existing.status === "pending") {
-      return res.status(400).json({ success, msg: "Already applied for a room." });
+exports.getRoomsByHostel = async (req, res) => {
+    let success = false;
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array(), success });
     }
 
-    const allocation = new RoomAllocation({ student, room });
-    await allocation.save();
+    const { hostel } = req.body;
 
-    success = true;
-    res.json({ success, msg: "Room allocation request submitted." });
-  } catch (err) {
-    console.error(err.message);
-    res.status(500).send("Server error");
-  }
-};
+    try {
+        const rooms = await Room.find({ hostel }).populate('occupants', ['name', 'cms_id', 'room_no']);
+        success = true;
+        res.json({ success, rooms });
 
-// @route   GET /api/roomallocation/pending
-// @desc    Get all pending room requests
-// @access  Admin
-exports.getPendingRequests = async (req, res) => {
-  let success = false;
-  try {
-    const requests = await RoomAllocation.find({ status: "pending" })
-      .populate("student", ["name", "cms_id", "course"]) // lowercase
-      .populate("room", ["number", "capacity"]);
-
-    success = true;
-    res.json({ success, requests });
-  } catch (err) {
-    console.error(err.message);
-    res.status(500).send("Server error");
-  }
-};
-
-// @route   POST /api/roomallocation/approve/:id
-// @desc    Approve room request
-// @access  Admin
-exports.approveRequest = async (req, res) => {
-  let success = false;
-  try {
-    const request = await RoomAllocation.findById(req.params.id)
-      .populate("student") // lowercase
-      .populate("room");
-
-    if (!request || request.status !== "pending") {
-      return res.status(400).json({ success, msg: "Invalid request" });
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server error');
     }
-
-    const room = await Room.findById(request.room._id);
-    if (room.occupants.length >= room.capacity) {
-      return res.status(400).json({ success, msg: "Room is full" });
-    }
-
-    room.occupants.push(request.student._id);
-    await room.save();
-
-    request.status = "approved";
-    request.approvedAt = Date.now();
-    await request.save();
-
-    success = true;
-    res.json({ success, msg: "Request approved" });
-  } catch (err) {
-    console.error(err.message);
-    res.status(500).send("Server error");
-  }
 };
 
-// @route   POST /api/roomallocation/reject/:id
-// @desc    Reject room request
-// @access  Admin
-exports.rejectRequest = async (req, res) => {
-  let success = false;
-  try {
-    const request = await RoomAllocation.findById(req.params.id);
-    if (!request || request.status !== "pending") {
-      return res.status(400).json({ success, msg: "Invalid request" });
-    }
-
-    request.status = "rejected";
-    await request.save();
-
-    success = true;
-    res.json({ success, msg: "Request rejected" });
-  } catch (err) {
-    console.error(err.message);
-    res.status(500).send("Server error");
-  }
-};
-
-// @route   GET api/room/available
-// @desc    Get all rooms that have space (available capacity)
+// @route   POST api/room/bystudent
+// @desc    Get room details of a student
 // @access  Public
-exports.getAvailableRooms = async (req, res) => {
-  let success = false;
-  try {
-    const rooms = await Room.find().populate("occupants"); // if occupants is ref to 'student', use lowercase
+exports.getRoomByStudent = async (req, res) => {
+    let success = false;
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array(), success });
+    }
 
-    const availableRooms = rooms.filter(
-      (room) => room.occupants.length < room.capacity
-    );
+    const { cms_id } = req.body;
 
-    success = true;
-    res.json({ success, rooms: availableRooms });
-  } catch (err) {
-    console.error(err.message);
-    res.status(500).json({ success, msg: "Server Error" });
-  }
+    try {
+        const student = await Student.findOne({ cms_id });
+        if (!student || !student.room_no) {
+            return res.status(404).json({ success, msg: 'Student not allocated to any room' });
+        }
+
+        const room = await Room.findOne({ room_no: student.room_no }).populate('occupants', ['name', 'cms_id']);
+        success = true;
+        res.json({ success, room });
+
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server error');
+    }
 };
