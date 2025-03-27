@@ -313,7 +313,7 @@ function Leave() {
           {requestsList.length === 0 ? (
             <li className="text-gray-500 dark:text-gray-400">No leave requests yet.</li>
           ) : (
-            requestsList.map((req) => (
+            requestsList.sort((a, b) => new Date(b.from_date) - new Date(a.from_date)).map((req) => (
               <li key={req._id} className="py-4 flex flex-col">
                 <span className="font-medium text-black dark:text-white">
                   {new Date(req.from_date).toDateString()} to {new Date(req.to_date).toDateString()}
