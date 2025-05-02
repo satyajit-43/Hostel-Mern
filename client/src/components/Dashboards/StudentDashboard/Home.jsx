@@ -118,6 +118,31 @@ const List = () => {
 
 function Home() {
   let student = JSON.parse(localStorage.getItem("student"));
+  const [notices, setNotices] = useState([]);
+
+  const getNotice = async()=>{
+    const res = await fetch("http://localhost:3000/api/notice/getall");
+    const data = await res.json();
+
+    if (data.success) {
+      const formattedNotices = data.notices.map((notice) => {
+        const dateObj = new Date(notice.date);
+        return {
+          _id: notice._id,
+          title: notice.title,
+          description: notice.description,
+          date: dateObj.toLocaleDateString("en-US", {
+            day: "numeric",
+            month: "long",
+            year: "numeric",
+          }),
+        };
+      });
+      setNotices(formattedNotices);
+    } else {
+      toast.error("Failed to fetch notices.");
+    }
+  }
 
   const getAttendance = async () => {
     let student = JSON.parse(localStorage.getItem("student"));
@@ -144,6 +169,7 @@ function Home() {
 
   useEffect(() => {
     getAttendance();
+    getNotice();
   }, []);
 
   const labels = ["Days off", "Days present"];
@@ -157,7 +183,7 @@ function Home() {
         Welcome <span className="text-blue-500">{student.name}!</span>
       </h1>
       <div className="flex gap-5 w-full justify-center flex-wrap">
-        <List />
+        
         {/* <div className="flex flex-col items-center bg-neutral-950 rounded-xl shadow-xl p-5">
           <span className="text-white text-xl">Attendance</span>
           <Doughnut
@@ -177,6 +203,25 @@ function Home() {
             }}
           />
         </div> */}
+
+        <div className="w-full sm:w-1/2 bg-slate-300 dark:bg-neutral-950 px-8 py-5 mt-1 rounded-xl shadow-lg text-black dark:text-white max-h-[600px] overflow-y-auto">
+          <h2 className="text-xl font-semibold mb-3">All Notices</h2>
+          <ul className="divide-y divide-gray-700">
+            {notices.length === 0
+              ? <p>No notices found.</p>
+              : notices.map((notice) => (
+                <li key={notice._id} className="py-3">
+                  <h3 className="font-bold text-lg">{notice.title}</h3>
+                  <p className="text-black dark:text-gray-300">{notice.description}</p>
+                  <p className="text-black dark:text-gray-500 text-sm">
+                    {new Date(notice.date).toLocaleString()}
+                  </p>
+                </li>
+              ))}
+            </ul>
+        </div>
+
+        <List />
       </div>
     </div>
   );
