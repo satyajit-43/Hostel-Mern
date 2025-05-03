@@ -47,12 +47,15 @@ function Attendance() {
       student.attendance = undefined;
     });
     setunmarkedStudents(unmarkedStudents);
+    setAllUnmarkedStudents(unmarkedStudents); // Store a copy of all unmarked students
     setProgress(100);
   };
 
   const [progress, setProgress] = useState(0)
   const [unmarkedStudents, setunmarkedStudents] = useState([]);
+  const [allUnmarkedStudents, setAllUnmarkedStudents] = useState([]); // For search functionality
   const [markedStudents, setMarkedStudents] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
 
   const markAttendance = async (id, isPresent) => {
     const data = await fetch(`http://localhost:3000/api/attendance/mark`, {
@@ -79,11 +82,48 @@ function Attendance() {
     setunmarkedStudents(
       unmarkedStudents.filter((student) => student.attendance === undefined)
     );
+    setAllUnmarkedStudents(
+      allUnmarkedStudents.filter((student) => student.id !== id)
+    );
     setMarkedStudents((markedStudents) =>
       markedStudents.concat(
         unmarkedStudents.filter((student) => student.attendance !== undefined)
       )
     );
+  };
+
+  const markAllPresent = async () => {
+    setProgress(30);
+    const promises = unmarkedStudents.map(async (student) => {
+      if (student.attendance === undefined) {
+        await markAttendance(student.id, true);
+      }
+    });
+    
+    await Promise.all(promises);
+    setProgress(100);
+    toast.success("All students marked present!", {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+    });
+  };
+
+  const handleSearch = (e) => {
+    const searchValue = e.target.value.toLowerCase();
+    setSearchTerm(searchValue);
+    
+    if (searchValue.trim() === "") {
+      setunmarkedStudents(allUnmarkedStudents);
+    } else {
+      const filteredStudents = allUnmarkedStudents.filter(student => 
+        student.name.toLowerCase().includes(searchValue) || 
+        student.cms.toLowerCase().includes(searchValue)
+      );
+      setunmarkedStudents(filteredStudents);
+    }
   };
 
   const [present, setPresent] = useState(0);
@@ -155,7 +195,27 @@ function Attendance() {
       <p className="text-black dark:text-white text-xl mb-10">Date: {date}</p>
       <div className="flex gap-5 flex-wrap items-center justify-center">
         <>{graph}</>
-        <div className="flow-root md:w-[400px] w-full bg-white dark:bg-neutral-950 px-7 py-5 rounded-lg shadow-xl max-h-[250px] overflow-auto">
+        <div className="flow-root md:w-[400px] w-full bg-white dark:bg-neutral-950 px-7 py-5 rounded-lg shadow-xl max-h-[350px] overflow-auto">
+          <div className="flex flex-col gap-4 mb-4">
+            <div className="flex items-center gap-2">
+              <input 
+                type="text" 
+                placeholder="Search by name or ID..." 
+                value={searchTerm}
+                onChange={handleSearch}
+                className="w-full px-3 py-2 text-sm rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-neutral-800 text-black dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
+            {unmarkedStudents.length > 0 && (
+              <button 
+                onClick={markAllPresent}
+                className="w-full px-4 py-2 text-sm font-medium text-white bg-green-600 rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-colors"
+              >
+                Mark All Present
+              </button>
+            )}
+          </div>
+          
           <span
             className={`font-bold text-xl text-black dark:text-white ${
               unmarkedStudents.length ? "block" : "hidden"
